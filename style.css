@@ -1,0 +1,27 @@
+:root{color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:transparent;color:#f3eee7;font-family:"Noto Serif SC","Songti SC","Microsoft YaHei",serif}
+.muchi-opening{--gold:#d8b989;--teal:#8eb8b4;--ink:#111b22;position:relative;isolation:isolate;max-width:1050px;margin:12px auto 24px;padding:clamp(18px,4vw,46px);overflow:hidden;border:1px solid #c8a66f70;border-radius:22px;background:radial-gradient(circle at 86% 0%,#29505c66,transparent 34%),linear-gradient(140deg,#0b151d,#121b22 55%,#081219);box-shadow:0 26px 65px #0009, inset 0 0 0 1px #ffffff0b}
+.muchi-opening::before{content:"";pointer-events:none;position:absolute;inset:8px;border:1px solid #b99d7540;border-radius:16px}
+.muchi-opening::after{content:"";pointer-events:none;position:absolute;inset:auto -30% -85% -30%;height:110%;border-radius:50%;background:radial-gradient(ellipse,#9371441e,transparent 64%)}
+.muchi-opening>*{position:relative;z-index:1}
+.muchi-kicker{font:600 11px/1.5 system-ui,sans-serif;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
+.muchi-heading{margin:12px 0 7px;font-size:clamp(29px,5.3vw,55px);font-weight:500;letter-spacing:.14em;line-height:1.25;text-shadow:0 6px 30px #000c}
+.muchi-subtitle{margin:0 0 24px;color:#b9c8c8;font-size:14px;line-height:1.9;letter-spacing:.04em}
+.muchi-line{width:90px;height:1px;margin-bottom:24px;background:linear-gradient(90deg,var(--gold),transparent)}
+.muchi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.muchi-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;height:clamp(220px,30vw,310px);width:100%;padding:24px;text-align:left;color:inherit;cursor:pointer;border:1px solid #e2d0ae5c;border-radius:15px;background:#16252b;overflow:hidden;isolation:isolate;transition:transform .28s,border-color .28s,box-shadow .28s}
+.muchi-card:hover,.muchi-card:focus-visible{transform:translateY(-5px);border-color:#e8c994;box-shadow:0 18px 40px #0009,0 0 22px #cba97842;outline:none}
+.muchi-card:disabled{cursor:wait;opacity:.6;transform:none}
+.muchi-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(.8) brightness(.82);transition:transform .5s,filter .5s}
+.muchi-card:hover img,.muchi-card:focus-visible img{transform:scale(1.045);filter:saturate(1) brightness(.95)}
+.muchi-card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#05131a17 12%,#07111644 40%,#03070bed 100%)}
+.muchi-card::after{content:"";position:absolute;inset:11px;border:1px solid #e2c9a72d;border-radius:9px;pointer-events:none}
+.muchi-card-no{font:600 11px/1.3 system-ui,sans-serif;letter-spacing:.18em;color:#e3c495}
+.muchi-card-title{display:block;margin:10px 0 5px;font-size:clamp(22px,3.4vw,31px);font-weight:500;letter-spacing:.08em;text-shadow:0 2px 12px #000}
+.muchi-card-desc{display:block;color:#d8dfda;font-size:12px;line-height:1.6;letter-spacing:.025em}
+.muchi-card-mark{position:absolute;right:23px;bottom:24px;font-size:22px;color:#ddbd89;opacity:.85}
+.muchi-note{margin:22px 0 0;color:#b0c1c3;font:12px/1.8 system-ui,sans-serif}
+.muchi-status{display:block;min-height:1.3em;margin-top:10px;color:#dbbc89;font:12px/1.4 system-ui,sans-serif}
+@media(max-width:620px){.muchi-opening{padding:20px 16px}.muchi-grid{grid-template-columns:1fr;gap:11px}.muchi-card{height:190px;padding:19px}.muchi-card-title{font-size:24px}.muchi-card-mark{right:18px;bottom:17px}}
+@media(prefers-reduced-motion:reduce){.muchi-card,.muchi-card img{transition:none}}
