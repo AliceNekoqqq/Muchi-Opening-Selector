@@ -1,5 +1,5 @@
-/** Muchi Opening Selector v1.0.1 — switches the real first-message swipe. */
-export const OPENING_SELECTOR_VERSION = '1.0.1';
+/** Muchi Opening Selector v1.1.0 — switches the real first-message swipe. */
+export const OPENING_SELECTOR_VERSION = '1.1.0';
 const ROOT_SELECTOR = '[data-muchi-opening-selector="1"]';
 const BINDINGS = new WeakSet();
 const attached = new Map();
@@ -30,7 +30,7 @@ function state(root, message, pending = false) {
   });
 }
 export async function chooseOpening(root, index, helper = helperFor(root?.ownerDocument?.defaultView)) {
-  if (!root || !Number.isInteger(index) || index < 1 || index > 4) return false;
+  if (!root || !Number.isInteger(index) || index < 1 || index > 5) return false;
   if (!helper) { state(root, '酒馆助手尚未就绪，请稍后重试，或用开场消息的翻页箭头选择。'); return false; }
   let first;
   try { first = helper.getChatMessages(0, { include_swipes: true })?.[0]; }
