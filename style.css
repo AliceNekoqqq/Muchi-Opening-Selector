@@ -2,7 +2,7 @@
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:transparent;color:#f3eee7;font-family:"Noto Serif SC","Songti SC","Microsoft YaHei",serif}
 .muchi-opening{--gold:#d8b989;--teal:#8eb8b4;--ink:#111b22;position:relative;isolation:isolate;max-width:1050px;margin:12px auto 24px;padding:clamp(18px,4vw,46px);overflow:hidden;border:1px solid #c8a66f70;border-radius:22px;background:linear-gradient(140deg,#0b151d,#121b22 55%,#081219);box-shadow:0 26px 65px #0009, inset 0 0 0 1px #ffffff0b}
-.muchi-opening::before{content:"";pointer-events:none;position:absolute;inset:0 0 auto;height:min(42%,520px);background:linear-gradient(#09131b75,#0b151d88),url('https://cdn.jsdelivr.net/gh/AliceNekoqqq/Muchi-Opening-Selector@main/Assets/Backgrounds/selector-city.webp') center top/cover no-repeat;mask-image:linear-gradient(#000 25%,#000b 55%,transparent 100%)}
+.muchi-opening::before{content:"";pointer-events:none;position:absolute;inset:0 0 auto;height:520px;background:linear-gradient(180deg,#07111920 0%,#07111920 25%,#0b151d9c 69%,#0b151d 100%),url('https://cdn.jsdelivr.net/gh/AliceNekoqqq/Muchi-Opening-Selector@ad6ce53f7126a8b307d1b59e6555c4cd94ba415a/Assets/Backgrounds/selector-city.webp') center top/cover no-repeat}
 .muchi-opening::after{content:"";pointer-events:none;position:absolute;inset:auto -30% -85% -30%;height:110%;border-radius:50%;background:radial-gradient(ellipse,#9371441e,transparent 64%)}
 .muchi-opening>*{position:relative;z-index:1}
 .muchi-kicker{font:600 11px/1.5 system-ui,sans-serif;letter-spacing:.28em;color:var(--gold);text-transform:uppercase}
