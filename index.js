@@ -1,5 +1,5 @@
-/** Muchi Opening Selector v1.2.0 — opening swipes and synchronized music. */
-export const OPENING_SELECTOR_VERSION = '1.2.0';
+/** Muchi Opening Selector v1.2.1 — opening swipes and autoplay attempt. */
+export const OPENING_SELECTOR_VERSION = '1.2.1';
 const ROOT_SELECTOR = '[data-muchi-opening-selector="1"]';
 const LYRICS_URLS = [
   'https://cdn.jsdelivr.net/gh/AliceNekoqqq/Muchi-Opening-Selector@v1.2.0/Assets/Audio/time-machine.lrc',
@@ -100,6 +100,11 @@ function bindPlayer(root) {
   audio.addEventListener('pause', syncPlay);
   audio.addEventListener('ended', syncPlay);
   panel.classList.add('is-ready');
+  // Audible autoplay is attempted immediately; browser policy may reject it.
+  audio.autoplay = true;
+  audio.play().then(() => lyricBox.removeAttribute('data-music-error')).catch(() => {
+    lyricBox.setAttribute('data-music-error', '浏览器限制了自动播放，点击播放按钮即可继续。');
+  });
   (async () => {
     for (const url of LYRICS_URLS) {
       try {
