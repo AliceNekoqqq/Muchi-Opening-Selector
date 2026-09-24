@@ -1,5 +1,5 @@
-/** Muchi Opening Selector v1.2.1 — opening swipes and autoplay attempt. */
-export const OPENING_SELECTOR_VERSION = '1.2.1';
+/** Muchi Opening Selector v1.2.2 — correct bilingual lyric pairing. */
+export const OPENING_SELECTOR_VERSION = '1.2.2';
 const ROOT_SELECTOR = '[data-muchi-opening-selector="1"]';
 const LYRICS_URLS = [
   'https://cdn.jsdelivr.net/gh/AliceNekoqqq/Muchi-Opening-Selector@v1.2.0/Assets/Audio/time-machine.lrc',
@@ -39,19 +39,27 @@ function formatTime(seconds) {
   return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`;
 }
 export function parseLyrics(source) {
-  const rows = new Map();
+  const rows = [];
+  let pending = null;
   for (const line of source.split(/\r?\n/)) {
     const matches = [...line.matchAll(/\[(\d+):(\d+(?:\.\d+)?)\]/g)];
     const content = line.replace(/\[(\d+):(\d+(?:\.\d+)?)\]/g, '').trim();
-    if (!content || /^(TME享有|Lyrics by|Composed by|time machine \(feat\.)/i.test(content)) continue;
+    if (!matches.length || !content || /^(TME享有|Lyrics by|Composed by|time machine \(feat\.)/i.test(content)) continue;
+    // 此 LRC 的中文写在下一时间戳，与下一句英文共用时间戳。
+    // 按文件顺序归给上一句英文，播放时间仍取该英文的时间戳。
+    if (/[\u3400-\u9fff]/u.test(content) && pending && pending.lines.length === 1) {
+      pending.lines.push(content);
+      pending = null;
+      continue;
+    }
     for (const match of matches) {
       const seconds = Number(match[1]) * 60 + Number(match[2]);
-      const key = Math.round(seconds * 100) / 100;
-      if (!rows.has(key)) rows.set(key, []);
-      rows.get(key).push(content);
+      const row = { time: Math.round(seconds * 100) / 100, lines: [content] };
+      rows.push(row);
+      pending = /[\u3400-\u9fff]/u.test(content) ? null : row;
     }
   }
-  return [...rows].sort(([a], [b]) => a - b).map(([time, lines]) => ({ time, lines }));
+  return rows.sort((a, b) => a.time - b.time);
 }
 function bindPlayer(root) {
   const panel = root.querySelector('[data-muchi-player]');
