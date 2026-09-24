@@ -1,5 +1,5 @@
-/** Muchi Opening Selector v1.0.0 — switches the real first-message swipe. */
-export const OPENING_SELECTOR_VERSION = '1.0.0';
+/** Muchi Opening Selector v1.0.1 — switches the real first-message swipe. */
+export const OPENING_SELECTOR_VERSION = '1.0.1';
 const ROOT_SELECTOR = '[data-muchi-opening-selector="1"]';
 const BINDINGS = new WeakSet();
 const attached = new Map();
