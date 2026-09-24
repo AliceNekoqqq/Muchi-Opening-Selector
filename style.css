@@ -9,6 +9,32 @@ body{margin:0;background:transparent;color:#f3eee7;font-family:"Noto Serif SC","
 .muchi-heading{margin:12px 0 7px;font-size:clamp(29px,5.3vw,55px);font-weight:500;letter-spacing:.14em;line-height:1.25;text-shadow:0 6px 30px #000c}
 .muchi-subtitle{margin:0 0 24px;color:#b9c8c8;font-size:14px;line-height:1.9;letter-spacing:.04em}
 .muchi-line{width:90px;height:1px;margin-bottom:24px;background:linear-gradient(90deg,var(--gold),transparent)}
+.muchi-player{position:relative;margin:0 0 24px;padding:17px 19px 13px;border:1px solid #dac1984f;border-radius:16px;background:linear-gradient(115deg,#192a30ee,#10191fec 54%,#29231fe9);box-shadow:inset 0 1px 0 #ffffff1a,0 16px 34px #0005;overflow:hidden}
+.muchi-player::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#e3c68d,#90a7ad,#e3c68d)}
+.muchi-player-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.muchi-player-record{display:grid;place-items:center;flex:none;width:46px;height:46px;border:1px solid #e8cba58c;border-radius:50%;background:repeating-radial-gradient(circle,#18252a 0 2px,#29373a 3px 4px);box-shadow:0 3px 12px #0009}
+.muchi-player-record::after{content:"";width:11px;height:11px;border-radius:50%;background:#dfbc80;border:2px solid #4a3932}
+.muchi-player-meta{min-width:0;flex:1}
+.muchi-player-kicker{display:block;margin-bottom:3px;font:600 10px/1.3 system-ui,sans-serif;letter-spacing:.2em;color:#c9ab7b}
+.muchi-player-title{display:block;font:500 clamp(17px,2.8vw,22px)/1.3 "Noto Serif SC","Songti SC",serif;letter-spacing:.06em;color:#f4e9d7}
+.muchi-player-artist{display:block;margin-top:2px;color:#a8b9b7;font:11px/1.5 system-ui,sans-serif}
+.muchi-player-controls{display:flex;align-items:center;gap:9px}
+.muchi-player-btn{flex:none;width:32px;height:32px;padding:0;color:#e6d5b8;cursor:pointer;border:1px solid #c0af935c;border-radius:50%;background:#ffffff0d;font:16px/1 system-ui,sans-serif;transition:background .2s,border-color .2s,transform .2s}
+.muchi-player-btn:hover,.muchi-player-btn:focus-visible{background:#d8b98935;border-color:#e7c792;transform:translateY(-1px);outline:none}
+.muchi-player-btn--primary{width:40px;height:40px;color:#1e2829;background:#dfc293;border-color:#dfc293;font-size:18px}
+.muchi-player-btn--primary:hover,.muchi-player-btn--primary:focus-visible{background:#f2d9ad}
+.muchi-player-track{display:flex;align-items:center;gap:12px}
+.muchi-player-track input{flex:1;min-width:0;accent-color:#d8b989;cursor:pointer}
+.muchi-player-time{color:#c3cac5;font:11px/1.2 system-ui,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}
+.muchi-player:not(.is-ready) .muchi-player-ui{display:none}
+.muchi-player.is-ready audio{display:none}
+.muchi-player-lyrics{position:relative;height:148px;margin-top:14px;padding:28px 8px 23px;border-top:1px solid #e3cba02b;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#9e8762 transparent;mask-image:linear-gradient(transparent,#000 22%,#000 80%,transparent);scroll-behavior:smooth;text-align:center;color:#b4b8b4;font:13px/1.45 "Noto Serif SC","Songti SC",serif}
+.muchi-lyric-row{display:block;width:100%;margin:0 auto 6px;padding:5px 8px;text-align:center;color:#9eaaa8;cursor:pointer;border:0;background:transparent;transition:color .2s,transform .2s;font:inherit}
+.muchi-lyric-row:hover,.muchi-lyric-row:focus-visible{color:#f7e4c7;outline:none}
+.muchi-lyric-row.is-active{color:#f3d8a7;transform:scale(1.03);text-shadow:0 0 22px #d8b98944}
+.muchi-lyric-row span{display:block}
+.muchi-lyric-translation{margin-top:2px;font-size:12px;opacity:.85}
+.muchi-player-lyrics[data-music-error]::after{content:attr(data-music-error);display:block;color:#f3d8a7}
 .muchi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .muchi-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;height:clamp(220px,30vw,310px);width:100%;padding:24px;text-align:left;color:inherit;cursor:pointer;border:1px solid #e2d0ae5c;border-radius:15px;background:#16252b;overflow:hidden;isolation:isolate;transition:transform .28s,border-color .28s,box-shadow .28s}
 .muchi-card:hover,.muchi-card:focus-visible{transform:translateY(-5px);border-color:#e8c994;box-shadow:0 18px 40px #0009,0 0 22px #cba97842;outline:none}
@@ -26,5 +52,5 @@ body{margin:0;background:transparent;color:#f3eee7;font-family:"Noto Serif SC","
 .muchi-card[data-opening-swipe="5"] img{filter:saturate(.9) brightness(.94)}
 .muchi-note{margin:22px 0 0;color:#b0c1c3;font:12px/1.8 system-ui,sans-serif}
 .muchi-status{display:block;min-height:1.3em;margin-top:10px;color:#dbbc89;font:12px/1.4 system-ui,sans-serif}
-@media(max-width:620px){.muchi-opening{padding:20px 16px}.muchi-grid{grid-template-columns:1fr;gap:11px}.muchi-card{height:190px;padding:19px}.muchi-card[data-opening-swipe="5"]{grid-column:auto;height:205px}.muchi-card-title{font-size:24px}.muchi-card-mark{right:18px;bottom:17px}}
+@media(max-width:620px){.muchi-opening{padding:20px 16px}.muchi-player{padding:14px}.muchi-player-head{flex-wrap:wrap;gap:10px}.muchi-player-controls{margin-left:auto}.muchi-player-lyrics{height:128px}.muchi-grid{grid-template-columns:1fr;gap:11px}.muchi-card{height:190px;padding:19px}.muchi-card[data-opening-swipe="5"]{grid-column:auto;height:205px}.muchi-card-title{font-size:24px}.muchi-card-mark{right:18px;bottom:17px}}
 @media(prefers-reduced-motion:reduce){.muchi-card,.muchi-card img{transition:none}}
